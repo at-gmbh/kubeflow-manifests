@@ -9,7 +9,10 @@ spec:
         - name: katib-db-manager
           env:
             - name: DB_NAME
-              value: db_name_katib
+              valueFrom:
+                secretKeyRef:
+                  name: off-cluster-storage-secret
+                  key: db_name_katib
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
