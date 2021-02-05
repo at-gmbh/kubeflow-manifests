@@ -18,31 +18,34 @@ spec:
       - name: container
         image: gcr.io/tfx-oss-public/ml_metadata_store_server:0.22.1
         env:
+
+
         - name: DBCONFIG_USER
           valueFrom:
             secretKeyRef:
-              name: mysql-secret
-              key: username
+              name: off-cluster-storage-secret
+              key: rds_username
         - name: DBCONFIG_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mysql-secret
-              key: password
+              name: off-cluster-storage-secret
+              key: rds_password
         - name: MYSQL_DATABASE
           valueFrom:
-            configMapKeyRef:
-              name: pipeline-install-config
-              key: mlmdDb
+            secretKeyRef:
+              name: off-cluster-storage-secret
+              key: db_name_metadata
         - name: MYSQL_HOST
           valueFrom:
-            configMapKeyRef:
-              name: pipeline-install-config
-              key: dbHost
+            secretKeyRef:
+              name: off-cluster-storage-secret
+              key: rds_host
         - name: MYSQL_PORT
           valueFrom:
-            configMapKeyRef:
-              name: pipeline-install-config
-              key: dbPort
+            secretKeyRef:
+              name: off-cluster-storage-secret
+              key: rds_port
+
         command: ["/bin/metadata_store_server"]
         args: ["--grpc_port=8080",
                "--mysql_config_database=$(MYSQL_DATABASE)",

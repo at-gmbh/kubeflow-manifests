@@ -20,31 +20,35 @@ spec:
         env:
           - name: DBCONFIG_DRIVER
             value: mysql
+
+
           - name: DBCONFIG_DB_NAME
             valueFrom:
-              configMapKeyRef:
-                name: pipeline-install-config
-                key: cacheDb
+              secretKeyRef:
+                name: off-cluster-storage-secret
+                key: db_name_cache
           - name: DBCONFIG_HOST_NAME
             valueFrom:
-              configMapKeyRef:
-                name: pipeline-install-config
-                key: dbHost
+              secretKeyRef:
+                name: off-cluster-storage-secret
+                key: rds_host
           - name: DBCONFIG_PORT
             valueFrom:
-              configMapKeyRef:
-                name: pipeline-install-config
-                key: dbPort
+              secretKeyRef:
+                name: off-cluster-storage-secret
+                key: rds_port
           - name: DBCONFIG_USER
             valueFrom:
               secretKeyRef:
-                name: mysql-secret
-                key: username
+                name: off-cluster-storage-secret
+                key: rds_username
           - name: DBCONFIG_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: mysql-secret
-                key: password
+                name: off-cluster-storage-secret
+                key: rds_password
+
+          
           - name: NAMESPACE_TO_WATCH
             valueFrom:
               fieldRef:

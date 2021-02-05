@@ -17,16 +17,14 @@ spec:
       containers:
         - name: container
           envFrom:
-          - configMapRef:
-              name: metadata-db-parameters
           - secretRef:
-              name: metadata-db-secrets
+              name: off-cluster-storage-secret
           - configMapRef:
               name: grpc-configmap
           args: ["--grpc_port=$(METADATA_GRPC_SERVICE_PORT)",
-                 "--mysql_config_host=$(MYSQL_HOST)",
-                 "--mysql_config_database=$(MYSQL_DATABASE)",
-                 "--mysql_config_port=$(MYSQL_PORT)",
-                 "--mysql_config_user=$(MYSQL_USERNAME)",
-                 "--mysql_config_password=$(MYSQL_PASSWORD)"
+                 "--mysql_config_host=$(rds_host)",
+                 "--mysql_config_database=metadb",
+                 "--mysql_config_port=$(rds_port)",
+                 "--mysql_config_user=$(rds_username)",
+                 "--mysql_config_password=$(MYSQL_rds_password)"
           ]

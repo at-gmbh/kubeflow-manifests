@@ -26,31 +26,33 @@ spec:
             configMapKeyRef:
               name: pipeline-install-config
               key: bucketName
+
         - name: DBCONFIG_USER
           valueFrom:
             secretKeyRef:
               name: mysql-secret
-              key: username
+              key: rds_username
         - name: DBCONFIG_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mysql-secret
-              key: password
+              key: rds_password
         - name: DBCONFIG_DBNAME
           valueFrom:
             configMapKeyRef:
               name: pipeline-install-config
-              key: pipelineDb
+              key: db_name_pipelines
         - name: DBCONFIG_HOST
           valueFrom:
             configMapKeyRef:
               name: pipeline-install-config
-              key: dbHost
+              key: rds_host
         - name: DBCONFIG_PORT
           valueFrom:
             configMapKeyRef:
               name: pipeline-install-config
-              key: dbPort
+              key: rds_port
+
         - name: OBJECTSTORECONFIG_ACCESSKEY
           valueFrom:
             secretKeyRef:
