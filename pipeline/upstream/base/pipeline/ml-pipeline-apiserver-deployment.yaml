@@ -30,27 +30,27 @@ spec:
         - name: DBCONFIG_USER
           valueFrom:
             secretKeyRef:
-              name: mysql-secret
+              name: off-cluster-storage-secret
               key: rds_username
         - name: DBCONFIG_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mysql-secret
+              name: off-cluster-storage-secret
               key: rds_password
         - name: DBCONFIG_DBNAME
           valueFrom:
-            configMapKeyRef:
-              name: pipeline-install-config
+            secretKeyRef:
+              name: off-cluster-storage-secret
               key: db_name_pipelines
         - name: DBCONFIG_HOST
           valueFrom:
-            configMapKeyRef:
-              name: pipeline-install-config
+            secretKeyRef:
+              name: off-cluster-storage-secret
               key: rds_host
         - name: DBCONFIG_PORT
           valueFrom:
-            configMapKeyRef:
-              name: pipeline-install-config
+            secretKeyRef:
+              name: off-cluster-storage-secret
               key: rds_port
 
         - name: OBJECTSTORECONFIG_ACCESSKEY
