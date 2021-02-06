@@ -297,6 +297,8 @@ metadata:
     serving.knative.dev/release: v0.14.3
   name: config-domain
   namespace: knative-serving
+  annotations: 
+    "reflector.v1.k8s.emberstack.com/reflects": "default/config-domain" #this configmap will be reflected from "default/config-domain"  which is NOT defined in these manifests and not created by kfctl.
 ---
 apiVersion: v1
 data:
@@ -540,6 +542,7 @@ data:
     # 3. Redirected: The Knative ingress will send a 302 redirect for all
     # http connections, asking the clients to use HTTPS
     httpProtocol: "Enabled"
+domainTemplate: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
 kind: ConfigMap
 metadata:
   labels:
