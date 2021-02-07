@@ -26,5 +26,5 @@ spec:
                  "--mysql_config_database=$(db_name_metadata)",
                  "--mysql_config_port=$(rds_port)",
                  "--mysql_config_user=$(rds_username)",
-                 "--mysql_config_password=$(MYSQL_rds_password)"
+                 "--mysql_config_password=$(rds_password)"
           ]
