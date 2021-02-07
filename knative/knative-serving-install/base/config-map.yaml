@@ -253,52 +253,54 @@ metadata:
   name: config-deployment
   namespace: knative-serving
 ---
-apiVersion: v1
-data:
-  _example: |
-    ################################
-    #                              #
-    #    EXAMPLE CONFIGURATION     #
-    #                              #
-    ################################
+# NOTE this configmap must be created manually at the same time as the off-cluster-storage-secret is created
 
-    # This block is not actually functional configuration,
-    # but serves to illustrate the available configuration
-    # options and document them in a way that is accessible
-    # to users that `kubectl edit` this config map.
-    #
-    # These sample configuration options may be copied out of
-    # this example block and unindented to be in the data block
-    # to actually change the configuration.
+# apiVersion: v1
+# data:
+#   _example: |
+#     ################################
+#     #                              #
+#     #    EXAMPLE CONFIGURATION     #
+#     #                              #
+#     ################################
 
-    # Default value for domain.
-    # Although it will match all routes, it is the least-specific rule so it
-    # will only be used if no other domain matches.
-    example.com: |
+#     # This block is not actually functional configuration,
+#     # but serves to illustrate the available configuration
+#     # options and document them in a way that is accessible
+#     # to users that `kubectl edit` this config map.
+#     #
+#     # These sample configuration options may be copied out of
+#     # this example block and unindented to be in the data block
+#     # to actually change the configuration.
 
-    # These are example settings of domain.
-    # example.org will be used for routes having app=nonprofit.
-    example.org: |
-      selector:
-        app: nonprofit
+#     # Default value for domain.
+#     # Although it will match all routes, it is the least-specific rule so it
+#     # will only be used if no other domain matches.
+#     example.com: |
 
-    # Routes having domain suffix of 'svc.cluster.local' will not be exposed
-    # through Ingress. You can define your own label selector to assign that
-    # domain suffix to your Route here, or you can set the label
-    #    "serving.knative.dev/visibility=cluster-local"
-    # to achieve the same effect.  This shows how to make routes having
-    # the label app=secret only exposed to the local cluster.
-    svc.cluster.local: |
-      selector:
-        app: secret
-kind: ConfigMap
-metadata:
-  labels:
-    serving.knative.dev/release: v0.14.3
-  name: config-domain
-  namespace: knative-serving
-  annotations:
-    "reflector.v1.k8s.emberstack.com/reflects": "default/knative-domain-config" #this configmap will be reflected from "default/config-domain"  which is NOT defined in these manifests and not created by kfctl.
+#     # These are example settings of domain.
+#     # example.org will be used for routes having app=nonprofit.
+#     example.org: |
+#       selector:
+#         app: nonprofit
+
+#     # Routes having domain suffix of 'svc.cluster.local' will not be exposed
+#     # through Ingress. You can define your own label selector to assign that
+#     # domain suffix to your Route here, or you can set the label
+#     #    "serving.knative.dev/visibility=cluster-local"
+#     # to achieve the same effect.  This shows how to make routes having
+#     # the label app=secret only exposed to the local cluster.
+#     svc.cluster.local: |
+#       selector:
+#         app: secret
+# kind: ConfigMap
+# metadata:
+#   labels:
+#     serving.knative.dev/release: v0.14.3
+#   name: config-domain
+#   namespace: knative-serving
+#   annotations:
+#     "reflector.v1.k8s.emberstack.com/reflects": "default/knative-domain-config" #this configmap will be reflected from "default/config-domain"  which is NOT defined in these manifests and not created by kfctl.
 ---
 apiVersion: v1
 data:
