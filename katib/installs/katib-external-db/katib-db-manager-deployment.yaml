@@ -8,33 +8,30 @@ spec:
       containers:
         - name: katib-db-manager
           env:
-            - name: DB_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: off-cluster-storage-secret
-                  key: db_name_katib
-            - name: DB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: off-cluster-storage-secret
-                  key: rds_username
-            - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: off-cluster-storage-secret
-                  key: rds_password
-            - name: KATIB_MYSQL_DB_DATABASE
-              valueFrom:
-                secretKeyRef:
-                  name: off-cluster-storage-secret
-                  key: db_name_katib
-            - name: KATIB_MYSQL_DB_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: off-cluster-storage-secret
-                  key: rds_host
-            - name: KATIB_MYSQL_DB_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: off-cluster-storage-secret
-                  key: rds_port
+          - name: DB_NAME
+            value: "mysql"
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: off-cluster-storage-secret
+                key: rds_username
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: off-cluster-storage-secret
+                key: rds_password
+          - name: KATIB_MYSQL_DB_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: off-cluster-storage-secret
+                key: db_name_katib
+          - name: KATIB_MYSQL_DB_HOST
+            valueFrom:
+              secretKeyRef:
+                name: off-cluster-storage-secret
+                key: rds_host
+          - name: KATIB_MYSQL_DB_PORT
+            valueFrom:
+              secretKeyRef:
+                name: off-cluster-storage-secret
+                key: rds_port
