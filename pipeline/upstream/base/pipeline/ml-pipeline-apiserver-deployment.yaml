@@ -13,10 +13,7 @@ spec:
       labels:
         app: ml-pipeline
     spec:    
-      volumes:
-        - name: config-volume
-          configMap:
-            name: ml-pipeline-ui-configmap
+
       containers:
       - env:
         - name: POD_NAMESPACE
