@@ -25,13 +25,13 @@ spec:
         - name: MINIO_ACCESS_KEY
           valueFrom:
             secretKeyRef:
-              name: mlpipeline-minio-artifact
-              key: accesskey
+              name: off-cluster-storage-secret
+              key: s3_access_key
         - name: MINIO_SECRET_KEY
           valueFrom:
             secretKeyRef:
-              name: mlpipeline-minio-artifact
-              key: secretkey
+              name: off-cluster-storage-secret
+              key: s3_secret_key
         volumeMounts:
         - name: hooks
           mountPath: /hooks
