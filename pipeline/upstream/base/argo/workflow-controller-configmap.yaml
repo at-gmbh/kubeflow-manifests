@@ -11,10 +11,11 @@ data:
     artifactRepository:
     {
         s3: {
-            bucket: $(kfp-artifact-bucket-name),
+            bucket: $(s3Bucket),
             keyPrefix: artifacts,
             endpoint: s3.amazonaws.com,
-            insecure: true,
+            insecure: false,
+            region: $(s3Region),
             accessKeySecret: {
                 name: off-cluster-storage-secret,
                 key: s3_access_key
@@ -25,5 +26,5 @@ data:
             }
         },
         archiveLogs: true
-    }
+      }
     }
