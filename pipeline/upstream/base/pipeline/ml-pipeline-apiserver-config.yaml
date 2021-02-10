@@ -8,18 +8,18 @@ data:
   config.json: |
     {
       "DBConfig": {
-        "Host": "$(rdsHost)",
-        "Port": "$(rdsPort)",
+        "Host": $(rdsHost),
+        "Port": $(rdsPort),
         "DriverName": "mysql",
         "DataSourceName": "",
-        "DBName": "$(rdsDatabase)",
+        "DBName": $(rdsDatabase),
         "GroupConcatMaxLen": 4194304
       },
       "ObjectStoreConfig": {
         "Host": "s3.amazonaws.com",
-        "Region": "$(s3Region)",
+        "Region": $(s3Region),
         "Secure": true,
-        "BucketName": "$(s3Bucket)",
+        "BucketName": $(s3Bucket),
         "PipelineFolder": "pipelines",
         "PipelinePath": "pipelines",
         "AccessKey": "",

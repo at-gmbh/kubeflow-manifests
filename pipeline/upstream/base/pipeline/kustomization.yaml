@@ -48,3 +48,53 @@ images:
   newTag: 1.0.4
 - name: gcr.io/ml-pipeline/visualization-server
   newTag: 1.0.4
+vars:
+- name: s3Region
+  objref:
+    kind: Secret
+    name: off-cluster-storage-secret
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.s3_region
+- name: s3Bucket
+  objref:
+    kind: Secret
+    name: off-cluster-storage-secret
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.s3_bucket
+- name: s3AccessKey
+  objref:
+    kind: Secret
+    name: off-cluster-storage-secret
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.s3_access_key
+- name: s3SecretKey
+  objref:
+    kind: Secret
+    name: off-cluster-storage-secret
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.s3_secret_key
+- name: dbHost
+  objref:
+    kind: Secret
+    name: off-cluster-storage-secret
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.rds_host
+- name: dbPort
+  objref:
+    kind: Secret
+    name: off-cluster-storage-secret
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.rds_port
+- name: dbName
+  objref:
+    kind: Secret
+    name: off-cluster-storage-secret
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.db_name_pipelines
