@@ -62,16 +62,16 @@ spec:
         #     secretKeyRef:
         #       name:  off-cluster-storage-secret
         #       key: s3_region
-        # - name: OBJECTSTORECONFIG_ACCESSKEY
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name:  off-cluster-storage-secret
-        #       key: s3_access_key
-        # - name: OBJECTSTORECONFIG_SECRETACCESSKEY
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: off-cluster-storage-secret
-        #       key: s3_secret_key
+        - name: OBJECTSTORECONFIG_ACCESSKEY
+          valueFrom:
+            secretKeyRef:
+              name:  off-cluster-storage-secret
+              key: s3_access_key
+        - name: OBJECTSTORECONFIG_SECRETACCESSKEY
+          valueFrom:
+            secretKeyRef:
+              name: off-cluster-storage-secret
+              key: s3_secret_key
 
         image: gcr.io/ml-pipeline/api-server:dummy
         imagePullPolicy: IfNotPresent
@@ -112,7 +112,7 @@ spec:
       volumes:
       - name: config-volume
         configMap:
-          name: ml-pipeline-api-config
+          name: ml-pipeline-config
           items:
             - key: config.json
               path: config.json

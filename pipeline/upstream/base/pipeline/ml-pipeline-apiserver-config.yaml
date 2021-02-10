@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   labels:
     app: ml-pipeline
-  name: ml-pipeline-api-config
+  name: ml-pipeline-config
 data:
   config.json: |
     {
@@ -22,8 +22,8 @@ data:
         "BucketName": "$(s3Bucket)",
         "PipelineFolder": "pipelines",
         "PipelinePath": "pipelines",
-        "AccessKey": "$(s3AccessKey)",
-        "SecretAccessKey": "$(s3SecretKey)"
+        "AccessKey": "",
+        "SecretAccessKey": ""
       },
       "InitConnectionTimeout": "6m",
       "DefaultPipelineRunnerServiceAccount": "pipeline-runner"

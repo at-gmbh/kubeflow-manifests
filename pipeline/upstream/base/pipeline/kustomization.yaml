@@ -3,6 +3,7 @@ kind: Kustomization
 bases:
 - metadata-writer
 resources:
+- ml-pipeline-apiserver-config.yaml
 - ml-pipeline-apiserver-deployment.yaml
 - ml-pipeline-apiserver-role.yaml
 - ml-pipeline-apiserver-rolebinding.yaml
