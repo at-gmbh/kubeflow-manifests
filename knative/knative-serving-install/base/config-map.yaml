@@ -253,7 +253,7 @@ metadata:
   name: config-deployment
   namespace: knative-serving
 ---
-# NOTE this configmap must be created manually at the same time as the off-cluster-storage-secret is created
+# NOTE this configmap must be created manually at the same time as the aws-storage-secret is created
 
 # apiVersion: v1
 # data:

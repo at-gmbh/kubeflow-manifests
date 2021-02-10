@@ -15,62 +15,62 @@ spec:
         app: cache-server
     spec:
       containers:
-      - name: server
-        image: gcr.io/ml-pipeline/cache-server:dummy
-        env:
-          - name: DBCONFIG_DRIVER
-            value: mysql
+        - name: server
+          image: gcr.io/ml-pipeline/cache-server:dummy
+          env:
+            - name: DBCONFIG_DRIVER
+              value: mysql
 
+            - name: DBCONFIG_DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: aws-storage-secret
+                  key: db_name_cache
+            - name: DBCONFIG_HOST_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: aws-storage-secret
+                  key: rds_host
+            - name: DBCONFIG_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: aws-storage-secret
+                  key: rds_port
+            - name: DBCONFIG_USER
+              valueFrom:
+                secretKeyRef:
+                  name: aws-storage-secret
+                  key: rds_username
+            - name: DBCONFIG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: aws-storage-secret
+                  key: rds_password
 
-          - name: DBCONFIG_DB_NAME
-            valueFrom:
-              secretKeyRef:
-                name: off-cluster-storage-secret
-                key: db_name_cache
-          - name: DBCONFIG_HOST_NAME
-            valueFrom:
-              secretKeyRef:
-                name: off-cluster-storage-secret
-                key: rds_host
-          - name: DBCONFIG_PORT
-            valueFrom:
-              secretKeyRef:
-                name: off-cluster-storage-secret
-                key: rds_port
-          - name: DBCONFIG_USER
-            valueFrom:
-              secretKeyRef:
-                name: off-cluster-storage-secret
-                key: rds_username
-          - name: DBCONFIG_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: off-cluster-storage-secret
-                key: rds_password
-
-          
-          - name: NAMESPACE_TO_WATCH
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.namespace
-        args: ["--db_driver=$(DBCONFIG_DRIVER)",
-               "--db_host=$(DBCONFIG_HOST_NAME)",
-               "--db_port=$(DBCONFIG_PORT)",
-               "--db_name=$(DBCONFIG_DB_NAME)",
-               "--db_user=$(DBCONFIG_USER)",
-               "--db_password=$(DBCONFIG_PASSWORD)",
-               "--namespace_to_watch=$(NAMESPACE_TO_WATCH)",
-              ]
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8443
-          name: webhook-api
-        volumeMounts:
-        - name: webhook-tls-certs
-          mountPath: /etc/webhook/certs
-          readOnly: true
+            - name: NAMESPACE_TO_WATCH
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          args:
+            [
+              "--db_driver=$(DBCONFIG_DRIVER)",
+              "--db_host=$(DBCONFIG_HOST_NAME)",
+              "--db_port=$(DBCONFIG_PORT)",
+              "--db_name=$(DBCONFIG_DB_NAME)",
+              "--db_user=$(DBCONFIG_USER)",
+              "--db_password=$(DBCONFIG_PASSWORD)",
+              "--namespace_to_watch=$(NAMESPACE_TO_WATCH)",
+            ]
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8443
+              name: webhook-api
+          volumeMounts:
+            - name: webhook-tls-certs
+              mountPath: /etc/webhook/certs
+              readOnly: true
       volumes:
-      - name: webhook-tls-certs
-        secret:
-          secretName: webhook-server-tls
+        - name: webhook-tls-certs
+          secret:
+            secretName: webhook-server-tls
       serviceAccountName: kubeflow-pipelines-cache

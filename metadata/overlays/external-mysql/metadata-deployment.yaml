@@ -17,14 +17,16 @@ spec:
       containers:
         - name: container
           envFrom:
-          - secretRef:
-              name: off-cluster-storage-secret
-          - configMapRef:
-              name: grpc-configmap
-          args: ["--grpc_port=$(METADATA_GRPC_SERVICE_PORT)",
-                 "--mysql_config_host=$(rds_host)",
-                 "--mysql_config_database=$(db_name_metadata)",
-                 "--mysql_config_port=$(rds_port)",
-                 "--mysql_config_user=$(rds_username)",
-                 "--mysql_config_password=$(rds_password)"
-          ]
+            - secretRef:
+                name: aws-storage-secret
+            - configMapRef:
+                name: grpc-configmap
+          args:
+            [
+              "--grpc_port=$(METADATA_GRPC_SERVICE_PORT)",
+              "--mysql_config_host=$(rds_host)",
+              "--mysql_config_database=$(db_name_metadata)",
+              "--mysql_config_port=$(rds_port)",
+              "--mysql_config_user=$(rds_username)",
+              "--mysql_config_password=$(rds_password)",
+            ]

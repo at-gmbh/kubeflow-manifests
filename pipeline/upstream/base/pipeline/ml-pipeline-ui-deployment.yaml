@@ -16,7 +16,7 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: ml-pipeline-ui-configmap
+            name: aws-storage-ml-pipeline-ui-configmap
       containers:
         - image: gcr.io/ml-pipeline/frontend:dummy
           imagePullPolicy: IfNotPresent
@@ -45,19 +45,19 @@ spec:
             #     secretKeyRef:
             #       name: mlpipeline-minio-artifact
             #       key: secretkey
-            
+
             - name: ALLOW_CUSTOM_VISUALIZATIONS
               value: "true"
 
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: off-cluster-storage-secret
+                  name: aws-storage-secret
                   key: s3_access_key
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: off-cluster-storage-secret
+                  name: aws-storage-secret
                   key: s3_secret_key
           readinessProbe:
             exec:
