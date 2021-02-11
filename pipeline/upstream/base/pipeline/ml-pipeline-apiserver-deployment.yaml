@@ -30,22 +30,21 @@ spec:
                 secretKeyRef:
                   name: aws-storage-secret
                   key: rds_password
-            - name: DBCONFIG_DBNAME
-              valueFrom:
-                secretKeyRef:
-                  name: aws-storage-secret
-                  key: db_name_pipelines
-            - name: DBCONFIG_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: aws-storage-secret
-                  key: rds_host
-            - name: DBCONFIG_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: aws-storage-secret
-                  key: rds_port
-
+            # - name: DBCONFIG_DBNAME
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: aws-storage-secret
+            #       key: db_name_pipelines
+            # - name: DBCONFIG_HOST
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: aws-storage-secret
+            #       key: rds_host
+            # - name: DBCONFIG_PORT
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: aws-storage-secret
+            #       key: rds_port
             # - name: OBJECTSTORECONFIG_PORT
             #   value: ""
             # - name: OBJECTSTORECONFIG_SECURE

@@ -16,7 +16,7 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: aws-storage-ml-pipeline-ui-configmap
+            name: aws-storage-ml-pipeline-ui-config
       containers:
         - image: gcr.io/ml-pipeline/frontend:dummy
           imagePullPolicy: IfNotPresent
