@@ -7,8 +7,6 @@ commonLabels:
 resources:
 - ../../upstream/base/pipeline/cluster-scoped
 - ../../upstream/base/pipeline
-- ../../upstream/base/argo
-- ../../upstream/base/argo/cluster-scoped
 - virtual-service.yaml
 - ../../cache/base_v3
 - application.yaml
