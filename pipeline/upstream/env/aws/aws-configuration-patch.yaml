@@ -11,7 +11,7 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: ml-pipeline-ui-configmap
+            name: aws-storage-ml-pipeline-ui-config
       containers:
         - name: ml-pipeline-ui
           env:
