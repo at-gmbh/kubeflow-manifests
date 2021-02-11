@@ -1,4 +1,4 @@
-# Not used. We will "aws-storage-workflow-controller-configmap" instead, which should be defined in advance
+# Not used. We will "aws-storage-workflow-controller-config" instead, which should be defined in advance
 
 apiVersion: v1
 kind: ConfigMap

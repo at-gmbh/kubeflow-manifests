@@ -25,7 +25,7 @@ spec:
       containers:
       - args:
         - --configmap
-        - aws-storage-workflow-controller-configmap
+        - aws-storage-workflow-controller-config
         - --executor-image
         - gcr.io/ml-pipeline/argoexec:v2.7.5-license-compliance
         command:

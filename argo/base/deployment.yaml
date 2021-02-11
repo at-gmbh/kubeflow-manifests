@@ -87,7 +87,7 @@ spec:
       containers:
       - args:
         - --configmap
-        - aws-storage-workflow-controller-configmap
+        - aws-storage-workflow-controller-config
         command:
         - workflow-controller
         env:
