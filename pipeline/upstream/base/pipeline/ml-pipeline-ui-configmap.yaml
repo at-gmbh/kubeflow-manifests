@@ -1,48 +1,48 @@
 # Not used. We will "aws-storage-ml-pipeline-ui-config" instead, which should be defined in advance
 
 
-# apiVersion: v1
-# kind: ConfigMap
-# metadata:
-#   name: ml-pipeline-ui-configmap
-# data:
-#    viewer-pod-template.json:  |-
-#     {
-#       "spec": {
-#           "containers": [
-#             {
-#               "env": [
-#                 {
-#                   "name": "AWS_ACCESS_KEY_ID",
-#                   "valueFrom": {
-#                     "secretKeyRef": {
-#                       "name": "off-cluster-storage-secret",
-#                       "key": "s3_access_key"
-#                     }
-#                   }
-#                 },
-#                 {
-#                   "name": "AWS_SECRET_ACCESS_KEY",
-#                   "valueFrom": {
-#                     "secretKeyRef": {
-#                       "name": "off-cluster-storage-secret",
-#                       "key": "s3_secret_key"
-#                     }
-#                   }
-#                 },
-#                 {
-#                   "name": "AWS_REGION",
-#                   "valueFrom": {
-#                     "configMapKeyRef": {
-#                       "name": "off-cluster-storage-secret",
-#                       "key": "s3_region"
-#                     }
-#                   }
-#                 }
-#               ]
-#             }
-#           ]
-#         }
-#     }
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ml-pipeline-ui-configmap
+data:
+   viewer-pod-template.json:  |-
+    {
+      "spec": {
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "AWS_ACCESS_KEY_ID",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "name": "off-cluster-storage-secret",
+                      "key": "s3_access_key"
+                    }
+                  }
+                },
+                {
+                  "name": "AWS_SECRET_ACCESS_KEY",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "name": "off-cluster-storage-secret",
+                      "key": "s3_secret_key"
+                    }
+                  }
+                },
+                {
+                  "name": "AWS_REGION",
+                  "valueFrom": {
+                    "configMapKeyRef": {
+                      "name": "off-cluster-storage-secret",
+                      "key": "s3_region"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+    }
 
 
