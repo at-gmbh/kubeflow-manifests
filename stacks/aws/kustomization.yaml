@@ -21,7 +21,7 @@ resources:
   # Pipeline
   # - ../../pipeline/minio/installs/generic
   - ../../pipeline/installs/multi-user
-  - ../../argo/base_v3
+  #- ../../argo/base_v3
   # Serving components
   - ../../seldon/seldon-core-operator/overlays/application
   # AWS components
