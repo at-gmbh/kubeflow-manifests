@@ -39,7 +39,7 @@ spec:
           value: 'false'
         - name: BASE_HREF
           value: /argo/
-        image: argoproj/argoui:v2.7.5
+        image: argoproj/argoui:v2.3.0
         imagePullPolicy: IfNotPresent
         name: argo-ui
         resources: {}
@@ -87,9 +87,7 @@ spec:
       containers:
       - args:
         - --configmap
-        - aws-storage-workflow-controller-config        
-        - --executor-image
-        - gcr.io/ml-pipeline/argoexec:v2.7.5-license-compliance
+        - aws-storage-workflow-controller-config
         command:
         - workflow-controller
         env:
@@ -98,7 +96,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: gcr.io/ml-pipeline/workflow-controller:v2.7.5-license-compliance
+        image: argoproj/workflow-controller:v2.3.0
         imagePullPolicy: IfNotPresent
         name: workflow-controller
         resources: {}
