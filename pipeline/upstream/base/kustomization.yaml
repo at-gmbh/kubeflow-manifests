@@ -14,9 +14,6 @@ resources:
 configMapGenerator:
 - name: pipeline-install-config
   envs: ["params.env"]
-secretGenerator:
-- name: mysql-secret
-  envs: ["params-db-secret.env"]
 vars:
 - name: kfp-namespace
   objref:
@@ -39,13 +36,6 @@ vars:
     apiVersion: v1
   fieldref:
     fieldpath: data.appVersion
-- name: kfp-artifact-bucket-name
-  objref:
-    kind: ConfigMap
-    name: pipeline-install-config
-    apiVersion: v1
-  fieldref:
-    fieldpath: data.bucketName
 - name: kfp-container-runtime-executor
   objref:
     kind: ConfigMap
@@ -53,5 +43,6 @@ vars:
     apiVersion: v1
   fieldref:
     fieldpath: data.containerRuntimeExecutor
+
 configurations:
 - params.yaml

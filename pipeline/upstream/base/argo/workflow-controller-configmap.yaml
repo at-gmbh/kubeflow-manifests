@@ -1,3 +1,5 @@
+# Not used. We will "aws-storage-workflow-controller-config" instead, which should be defined in advance
+
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -11,19 +13,20 @@ data:
     artifactRepository:
     {
         s3: {
-            bucket: $(kfp-artifact-bucket-name),
+            bucket: $(s3Bucket),
             keyPrefix: artifacts,
-            endpoint: minio-service.$(kfp-namespace):9000,
-            insecure: true,
+            endpoint: s3.amazonaws.com,
+            insecure: false,
+            region: $(s3Region),
             accessKeySecret: {
-                name: mlpipeline-minio-artifact,
-                key: accesskey
+                name: aws-storage-secret,
+                key: s3_access_key
             },
             secretKeySecret: {
-                name: mlpipeline-minio-artifact,
-                key: secretkey
+                name: aws-storage-secret,
+                key: s3_secret_key
             }
         },
         archiveLogs: true
-    }
+      }
     }

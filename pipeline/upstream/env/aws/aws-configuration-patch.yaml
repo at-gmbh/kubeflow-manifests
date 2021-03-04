@@ -11,19 +11,19 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: ml-pipeline-ui-configmap
+            name: aws-storage-ml-pipeline-ui-config
       containers:
         - name: ml-pipeline-ui
           env:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: mlpipeline-minio-artifact
+                  name: aws-storage-secret
                   key: accesskey
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: mlpipeline-minio-artifact
+                  name: aws-storage-secret
                   key: secretkey
 
 ---

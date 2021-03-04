@@ -21,11 +21,13 @@ spec:
       creationTimestamp: null
       labels:
         app: workflow-controller
+      annotations:
+        sidecar.istio.io/inject: "false"
     spec:
       containers:
       - args:
         - --configmap
-        - workflow-controller-configmap
+        - aws-storage-workflow-controller-config
         - --executor-image
         - gcr.io/ml-pipeline/argoexec:v2.7.5-license-compliance
         command:

@@ -15449,11 +15449,11 @@ spec:
             value: "1"
           resources:
             limits:
-              cpu: 100m
-              memory: 200Mi
+              cpu: 500m
+              memory: 1000Mi
             requests:
-              cpu: 10m
-              memory: 100Mi
+              cpu: 100m
+              memory: 500Mi
             
           volumeMounts:
           - name: config-volume
